@@ -70,6 +70,8 @@ public class databaseCDC {
             if (originalDatabaseType.equals("mysql")) {
                 config = config.edit()
                         .with("database.server.id", serverId)   //填上mysql的 serverid
+                        .with("converters", "dateConverters")   //解决mysql字段中的时区问题，设置with("database.serverTimezone", "Asia/Shanghai")无效
+                        .with("dateConverters.type", "com.debezium.java.MySqlDateTimeConverter")
                         .build();      //
             }
 
