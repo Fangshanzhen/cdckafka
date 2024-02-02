@@ -11,7 +11,7 @@
     <artifactId>debezium</artifactId>
     <version>cdcData</version>
     <name>debezium</name>
-    <description>Demo project for Spring Boot</description>
+    <description>debeziumCDC project</description>
     <properties>
         <java.version>1.8</java.version>
         <debezium.version>1.9.7.Final</debezium.version>
@@ -143,37 +143,11 @@
             <version>8.0.26</version>
         </dependency>
 
-
-
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.75</version>
         </dependency>
-
-        <!--<dependency>-->
-            <!--<groupId>pentaho-kettle</groupId>-->
-            <!--<artifactId>kettle-core</artifactId>-->
-            <!--<version>8.2.0.0-342</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>pentaho-kettle</groupId>-->
-            <!--<artifactId>kettle-dbdialog</artifactId>-->
-            <!--<version>8.2.0.0-342</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>pentaho-kettle</groupId>-->
-            <!--<artifactId>kettle-engine</artifactId>-->
-            <!--<version>8.2.0.0-342</version>-->
-        <!--</dependency>-->
-
-        <!--<dependency>-->
-            <!--<groupId>pentaho</groupId>-->
-            <!--<artifactId>metastore</artifactId>-->
-            <!--<version>8.2.0.0-342</version>-->
-        <!--</dependency>-->
 
         <dependency>
             <groupId>aopalliance</groupId>

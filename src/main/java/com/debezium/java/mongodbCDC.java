@@ -18,7 +18,9 @@ import java.util.concurrent.Future;
 
 import static com.debezium.java.CDCUtils.*;
 
-
+/**
+ * mongodb配置有所不同，单独区别
+ */
 @Slf4j
 public class mongodbCDC {
 

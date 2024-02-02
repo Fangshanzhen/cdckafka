@@ -11,6 +11,10 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import java.time.Duration;
 import java.util.*;
 
+/**
+ * kafka消费者代码
+ */
+
 @Slf4j
 public class kafkaConsumer {
 
@@ -37,7 +41,7 @@ public class kafkaConsumer {
                 // 提取记录的JSON内容
                 String json = record.value();
                 JSONObject jsonObj = new JSONObject(json);
-                // 处理JSON数据
+                // todo 处理JSON数据
                 JSONObject afterJsonObj = jsonObj.getJSONObject("afterJson");
 
 
