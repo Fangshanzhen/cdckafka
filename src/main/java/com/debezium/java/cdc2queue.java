@@ -50,18 +50,20 @@ public class cdc2queue {
                     .with("database.history", FileDatabaseHistory.class.getName())
                     .with("database.history.file.filename", databaseHistoryAddress)
                     .with("logger.level", "DEBUG")
-                    .with("snapshot.mode", "initial") //首次全量
+                    .with("snapshot.mode", "initial") //全量+增量
                     .with("database.serverTimezone", "Asia/Shanghai")
 
                     .build();
 
             if (originalDatabaseType.equals("postgresql")) {
-                config = config.edit().with("slot.name", "debezium_slot") // postgresql 单独配置， 逻辑复制槽名称, 不能超过max_replication_slots = 20
-                        .with("plugin.name", "pgoutput").build();      //postgresql 单独配置，必须是这个名字
+                config = config.edit()
+                        .with("slot.name", "debezium_slot") // postgresql 单独配置， 逻辑复制槽名称, 不能超过max_replication_slots = 20
+                        .with("plugin.name", "pgoutput")      //postgresql 单独配置，必须是pgoutput或decoderbufs
+                        .build();
             }
             if (originalDatabaseType.equals("mysql")) {
                 config = config.edit()
-                        .with("database.server.id", serverId)   //填上mysql的 serverid
+                        .with("database.server.id", serverId)   //mysql的 serverid
                         .with("converters", "dateConverters")   //解决mysql字段中的时区问题，某个字段如果是timestamp等类型，监控时debezium会转为utc，小8小时，设置with("database.serverTimezone", "Asia/Shanghai")无效
                         .with("dateConverters.type", "com.debezium.java.MySqlDateTimeConverter")
                         .build();
@@ -91,25 +93,7 @@ public class cdc2queue {
     }
 
 
-    private static String connectorClass(String originalDatabaseType) {
-        if (originalDatabaseType.equals("postgresql")) {
-            return "io.debezium.connector.postgresql.PostgresConnector";
-        }
-        if (originalDatabaseType.equals("mysql")) {
-            return "io.debezium.connector.mysql.MySqlConnector";
-        }
-        if (originalDatabaseType.equals("oracle")) {
-            return "io.debezium.connector.oracle.OracleConnector";
-        }
-        if (originalDatabaseType.equals("sqlserver")) {
-            return "io.debezium.connector.sqlserver.SqlServerConnector";
-        }
-        if (originalDatabaseType.equals("db2")) {
-            return "io.debezium.connector.db2.Db2Connector";
-        }
 
-        return null;
-    }
 
 
 }
