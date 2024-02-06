@@ -9,7 +9,7 @@ public class test {
 
 //        databaseCDC.cdcData("postgresql", "postgres", "test", "127.0.0.1", "5432", "postgres",
 //                "123456","test2,test3","10.0.108.51:9092","postgresql_topic","D:\\Debezium\\offset\\postgresql\\file.dat",
-//                "D:\\Debezium\\offset\\postgresql\\dbhistory.dat",null);
+//                "D:\\Debezium\\offset\\postgresql\\dbhistory.dat",null,"debezium");
 
 
         /**
@@ -18,7 +18,7 @@ public class test {
          */
 //        databaseCDC.cdcData("oracle", "ORCL1", "C##FANG", "127.0.0.1", "1521", "c##fang",
 //                "test","FANG","10.0.108.51:9092","oracle_topic","D:\\Debezium\\offset\\oracle\\file.dat",
-//                "D:\\Debezium\\offset\\oracle\\dbhistory.dat",null);
+//                "D:\\Debezium\\offset\\oracle\\dbhistory.dat",null,null);
 
 
         /**
@@ -30,12 +30,12 @@ public class test {
 //
 //                databaseCDC.cdcData("sqlserver","mydatabase", "dbo", "127.0.0.1", "1433", "sa",
 //                        "123456","fangtest","10.0.108.51:9092","sqlserver_topic","D:\\Debezium\\offset\\sqlserver\\file.dat",
-//                "D:\\Debezium\\offset\\sqlserver\\dbhistory.dat",null);
+//                "D:\\Debezium\\offset\\sqlserver\\dbhistory.dat",null,null);
 
 //
 //        databaseCDC.cdcData("mysql","test", "test", "127.0.0.1", "3306", "root",
 //                "123456","fangtest1","10.0.108.51:9092","mysql_topic","D:\\Debezium\\offset\\mysql\\file.dat",
-//                "D:\\Debezium\\offset\\mysql\\dbhistory.dat","1222");
+//                "D:\\Debezium\\offset\\mysql\\dbhistory.dat","1222",null);
 
 
 /**

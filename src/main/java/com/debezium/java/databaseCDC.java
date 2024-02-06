@@ -9,6 +9,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.storage.FileOffsetBackingStore;
+
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -29,7 +30,7 @@ public class databaseCDC {
 
     public static void cdcData(String originalDatabaseType, String originalDbname, String originalSchema, String originalIp, String originalPort,
                                String originalUsername, String originalPassword,
-                               String tableList, String kafkaServer, String topic, String offsetAddress, String databaseHistoryAddress, String serverId) throws Exception {
+                               String tableList, String kafkaServer, String topic, String offsetAddress, String databaseHistoryAddress, String serverId, String slotName) throws Exception {
 
 
         if (tableList != null) {
@@ -66,7 +67,7 @@ public class databaseCDC {
 
             if (originalDatabaseType.equals("postgresql")) {
                 config = config.edit()
-                        .with("slot.name", "debezium12") // 逻辑复制槽名称, 不能超过max_replication_slots = 20
+                        .with("slot.name", slotName) // 逻辑复制槽名称, 不能超过max_replication_slots = 20
                         .with("plugin.name", "pgoutput") //postgresql 单独配置，必须是pgoutput或decoderbufs
                         .build();
             }
@@ -109,7 +110,6 @@ public class databaseCDC {
 
         }
     }
-
 
 
 }

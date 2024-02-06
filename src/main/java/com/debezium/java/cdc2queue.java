@@ -25,7 +25,7 @@ public class cdc2queue {
 
     public static void cdcData(String originalDatabaseType, String originalDbname, String originalSchema, String originalIp, String originalPort,
                                String originalUsername, String originalPassword,
-                               String tableList, String offsetAddress, String databaseHistoryAddress, String serverId) throws Exception {
+                               String tableList, String offsetAddress, String databaseHistoryAddress, String serverId, String slotName) throws Exception {
 
         if (tableList != null) {
             String modified = transformString(tableList, originalSchema);
@@ -57,7 +57,7 @@ public class cdc2queue {
 
             if (originalDatabaseType.equals("postgresql")) {
                 config = config.edit()
-                        .with("slot.name", "debezium_slot") // postgresql 单独配置， 逻辑复制槽名称, 不能超过max_replication_slots = 20
+                        .with("slot.name", slotName) // postgresql 单独配置， 逻辑复制槽名称, 不能超过max_replication_slots = 20
                         .with("plugin.name", "pgoutput")      //postgresql 单独配置，必须是pgoutput或decoderbufs
                         .build();
             }
@@ -91,9 +91,6 @@ public class cdc2queue {
         }
 
     }
-
-
-
 
 
 }
