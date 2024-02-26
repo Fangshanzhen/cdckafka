@@ -1,6 +1,7 @@
 package com.debezium.java;
 
 
+
 import io.debezium.config.Configuration;
 import io.debezium.embedded.EmbeddedEngine;
 import io.debezium.relational.history.FileDatabaseHistory;
@@ -10,16 +11,14 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.storage.FileOffsetBackingStore;
 import org.json.JSONObject;
+
 import java.util.Properties;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
 import static com.debezium.java.CDCUtils.*;
 
 /**
- * mongodb配置有所不同，单独区别
+ * mongodb配置有所不同，单独区别，此版本mongodb，适用于1.6.4.Final，1.9.7.Final运行失败
  */
 @Slf4j
 public class mongodbCDC {
@@ -59,6 +58,29 @@ public class mongodbCDC {
                     .with("snapshot.mode", "initial")
 
                     .build();
+
+
+//            BlockingQueue queue = new LinkedBlockingDeque();
+//
+//            EmbeddedEngine engine = EmbeddedEngine.create()
+//                    .using(config)
+//                    .notifying(record -> {
+//                        Struct structValue = (Struct) record.value();
+//                        JSONObject operateJson = mongodbUtils.structToJson(structValue);
+//                        // 将转换后的JSON对象放入队列，等待被下一个节点消费
+//                        queue.offer(operateJson);
+//                    })
+//                    .build();
+//
+//            // 启动一个线程来运行Debezium Engine
+//            new Thread(() -> {
+//                engine.run();
+//            }).start();
+//
+////             启动OperateJsonProcessor来处理队列中的数据
+//            OperateJsonProcessor processor = new OperateJsonProcessor(queue);
+//            new Thread(processor).start();
+
 
 
             ExecutorService executorService = Executors.newSingleThreadExecutor();

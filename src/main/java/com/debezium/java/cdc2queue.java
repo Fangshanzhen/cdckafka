@@ -63,7 +63,7 @@ public class cdc2queue {
             }
             if (originalDatabaseType.equals("mysql")) {
                 config = config.edit()
-                        .with("database.server.id", serverId)   //mysql的 serverid
+                        .with("database.server .id", serverId)   //mysql的 serverid
                         .with("converters", "dateConverters")   //解决mysql字段中的时区问题，某个字段如果是timestamp等类型，监控时debezium会转为utc，小8小时，设置with("database.serverTimezone", "Asia/Shanghai")无效
                         .with("dateConverters.type", "com.debezium.java.MySqlDateTimeConverter")
                         .build();
