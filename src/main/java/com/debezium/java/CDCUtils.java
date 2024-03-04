@@ -141,19 +141,19 @@ public class CDCUtils {
 
 
     public static String connectorClass(String originalDatabaseType) {
-        if (originalDatabaseType.equals("postgresql")) {
+        if (originalDatabaseType.toLowerCase().equals("postgresql")) {
             return "io.debezium.connector.postgresql.PostgresConnector";
         }
-        if (originalDatabaseType.equals("mysql")) {
+        if (originalDatabaseType.toLowerCase().equals("mysql")) {
             return "io.debezium.connector.mysql.MySqlConnector";
         }
-        if (originalDatabaseType.equals("oracle")) {
+        if (originalDatabaseType.toLowerCase().equals("oracle")) {
             return "io.debezium.connector.oracle.OracleConnector";
         }
-        if (originalDatabaseType.equals("sqlserver")) {
+        if (originalDatabaseType.toLowerCase().equals("sqlserver")) {
             return "io.debezium.connector.sqlserver.SqlServerConnector";
         }
-        if (originalDatabaseType.equals("db2")) {
+        if (originalDatabaseType.toLowerCase().equals("db2")) {
             return "io.debezium.connector.db2.Db2Connector";
         }
 

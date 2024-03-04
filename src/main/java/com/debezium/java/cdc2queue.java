@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.storage.FileOffsetBackingStore;
 
-
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -16,6 +15,7 @@ import static com.debezium.java.CDCUtils.*;
 
 /**
  * 监听数据放入队列中
+ * https://debezium.io/documentation/reference/nightly/connectors/mongodb.html
  */
 
 
@@ -55,15 +55,15 @@ public class cdc2queue {
 
                     .build();
 
-            if (originalDatabaseType.equals("postgresql")) {
+            if (originalDatabaseType.toLowerCase().equals("postgresql")) {
                 config = config.edit()
                         .with("slot.name", slotName) // postgresql 单独配置， 逻辑复制槽名称, 不能超过max_replication_slots = 20
                         .with("plugin.name", "pgoutput")      //postgresql 单独配置，必须是pgoutput或decoderbufs
                         .build();
             }
-            if (originalDatabaseType.equals("mysql")) {
+            if (originalDatabaseType.toLowerCase().equals("mysql")) {
                 config = config.edit()
-                        .with("database.server .id", serverId)   //mysql的 serverid
+                        .with("database.server.id", serverId)   //mysql的 serverid
                         .with("converters", "dateConverters")   //解决mysql字段中的时区问题，某个字段如果是timestamp等类型，监控时debezium会转为utc，小8小时，设置with("database.serverTimezone", "Asia/Shanghai")无效
                         .with("dateConverters.type", "com.debezium.java.MySqlDateTimeConverter")
                         .build();

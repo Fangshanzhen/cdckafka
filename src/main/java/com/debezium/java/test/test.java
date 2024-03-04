@@ -41,9 +41,17 @@ public class test {
 /**
  * mongodb 链接信息host:port,host:port，如果 mongodb.members.auto.discover 是false，需要指定具体的副本集名称例如 rs0/host:port。如果是shard 集群请配置config server的地址。
  */
-        mongodbCDC.cdcData("mongodb","rs/10.0.108.31:27017", "test", "test", "", "",
-                "10.0.108.51:9092","mongodb_topic","D:\\Debezium\\offset\\mongodb\\file.dat",
-                "D:\\Debezium\\offset\\mongodb\\dbhistory.dat");
+//        mongodbCDC.cdcData("mongodb","rs/10.0.108.31:27017", "test", "test", "", "",
+//                "10.0.108.51:9092","mongodb_topic","D:\\Debezium\\offset\\mongodb\\file.dat",
+//                "D:\\Debezium\\offset\\mongodb\\dbhistory.dat");
+
+
+
+        cdc2queue.cdcData("postgresql", "postgres", "test", "127.0.0.1", "5432", "postgres",
+                "123456","test2","D:\\Debezium\\offset\\postgresql\\file.dat",
+                "D:\\Debezium\\offset\\postgresql\\dbhistory.dat",null,"debezium");
+
+
 
     }
 
