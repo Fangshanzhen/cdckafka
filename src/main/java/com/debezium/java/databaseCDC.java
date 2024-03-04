@@ -20,7 +20,7 @@ import static com.debezium.java.CDCUtils.*;
 
 /**
  * 监听的数据写入kafka，需自行消费kafka得到cdc数据
- * 使用debezium1.9.7.Final版本，超过2.0以后需要java11
+ * 使用debezium1.9.7.Final版本，超过2.0以后需要java 11
  * 关系型数据库使用
  * 参考文档：https://debezium.io/documentation/reference/nightly/connectors/
  */
@@ -65,13 +65,13 @@ public class databaseCDC {
 
                     .build();
 
-            if (originalDatabaseType.equals("postgresql")) {
+            if (originalDatabaseType.toLowerCase().equals("postgresql")) {
                 config = config.edit()
                         .with("slot.name", slotName) // 逻辑复制槽名称, 不能超过max_replication_slots = 20
                         .with("plugin.name", "pgoutput") //postgresql 单独配置，必须是pgoutput或decoderbufs
                         .build();
             }
-            if (originalDatabaseType.equals("mysql")) {
+            if (originalDatabaseType.toLowerCase().equals("mysql")) {
                 config = config.edit()
                         .with("database.server.id", serverId)   //mysql的 serverid
                         .with("converters", "dateConverters")   //解决mysql字段中的时区问题，设置with("database.serverTimezone", "Asia/Shanghai")无效

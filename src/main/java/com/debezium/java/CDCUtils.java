@@ -49,7 +49,7 @@ public class CDCUtils {
                 for (Field field : beforeStructList) {
                     String fieldName = field.name();
                     Object fieldValue = beforeStruct.get(fieldName);
-                    beforeJson.put(fieldName, fieldValue);  //字段后面加@
+                    beforeJson.put(fieldName, fieldValue);
                 }
 
             } else if (afterStruct != null) {
